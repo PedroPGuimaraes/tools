@@ -1,9 +1,6 @@
 name: Print Form Data
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       email:
