@@ -13,7 +13,7 @@ on:
         type: string
 
 jobs:
-  create=user:
+  create-user:
     name: Create Auth0 User and Send Email
     runs-on: ubuntu-latest
     steps:
