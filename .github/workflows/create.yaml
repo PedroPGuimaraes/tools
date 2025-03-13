@@ -37,3 +37,11 @@ jobs:
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
           python auth0/create.py
+
+      - name: Send Email
+        run: |
+          python auth0/send_email.py
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ github.event.inputs.email }}
