@@ -1,0 +1,26 @@
+name: Print Form Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: 'Email'
+        required: true
+        type: string
+      dashes:
+        description: 'Dashes'
+        required: true
+        type: string
+
+jobs:
+  print-form-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exibir dados do formulário
+        run: |
+          echo "📩 Dados do Formulário Recebidos:"
+          echo "Nome: ${{ github.event.inputs.email }}"
+          echo "E-mail: ${{ github.event.inputs.dashes }}"
+
+      - name: Finalizar
+        run: echo "✅ Formulário processado com sucesso!"
