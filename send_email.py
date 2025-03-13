@@ -21,8 +21,8 @@ def send_email():
             <p>Prezado, boa tarde!</p>
             <p>Segue o passo a passo para acesso à plataforma de Dashes.</p>
 
-            <p><strong>Usuário:</strong> {email_to}</p>
-            <p><strong>Senha:</strong> {password}</p>
+            <p><strong>Usuário:</strong> {email_to}</br>
+            <strong>Senha:</strong> {password}</p>
 
             <ol>
                 <li>Acesse a URL <a href='https://dashes.4intelligence.com.br'>https://dashes.4intelligence.com.br</a> com o usuário e senha.</li>
