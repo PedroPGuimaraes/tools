@@ -33,7 +33,7 @@ def create_user(email, dashes, client_id, client_secret):
 
     password = generate_secure_password()
 
-    shinyproxy_roles = dashes.split(',')
+    shinyproxy_roles = json.loads(dashes)
 
     payload = json.dumps({
         "email": email,
