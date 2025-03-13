@@ -21,7 +21,7 @@ def send_email():
             <p>Prezado, boa tarde!</p>
             <p>Segue o passo a passo para acesso à plataforma de Dashes.</p>
 
-            <p><strong>Usuário:</strong> {email}</p>
+            <p><strong>Usuário:</strong> {email_to}</p>
             <p><strong>Senha:</strong> {password}</p>
 
             <ol>
