@@ -10,12 +10,12 @@ def generate_secure_password(length=16):
     return ''.join(secrets.choice(characters) for _ in range(length))
 
 def get_access_token(client_id, client_secret):
-    conn = http.client.HTTPSConnection("dev-0xi5v04vtchrfciq.us.auth0.com")
+    conn = http.client.HTTPSConnection("development-4intelligence.us.auth0.com")
 
     payload = json.dumps({
         "client_id": client_id,
         "client_secret": client_secret,
-        "audience": "https://dev-0xi5v04vtchrfciq.us.auth0.com/api/v2/",
+        "audience": "https://development-4intelligence.us.auth0.com/api/v2/",
         "grant_type": "client_credentials"
     })
 
@@ -28,7 +28,7 @@ def get_access_token(client_id, client_secret):
     return token_info.get("access_token")
 
 def create_user(email, dashes, client_id, client_secret):
-    url = "https://dev-0xi5v04vtchrfciq.us.auth0.com/api/v2/users"
+    url = "https://development-4intelligence.us.auth0.com/api/v2/users"
     access_token = get_access_token(client_id, client_secret)
 
     password = generate_secure_password()
