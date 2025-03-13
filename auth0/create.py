@@ -10,7 +10,7 @@ def generate_secure_password(length=16):
     return ''.join(secrets.choice(characters) for _ in range(length))
 
 def get_access_token(client_id, client_secret):
-    conn = http.client.HTTPSConnection("SECRET.us.auth0.com")
+    conn = http.client.HTTPSConnection("https://dev-0xi5v04vtchrfciq.us.auth0.com")
 
     payload = json.dumps({
         "client_id": client_id,
