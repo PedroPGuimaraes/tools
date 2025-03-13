@@ -4,24 +4,32 @@ from sendgrid.helpers.mail import Mail
 
 
 def send_email():
-    # Pegando as variáveis de ambiente (segurança no GitHub Actions)
     sendgrid_api_key = os.environ.get("SENDGRID_API_KEY")
     email_from = os.environ.get("EMAIL_FROM")
     email_to = os.environ.get("EMAIL_TO")
+    password = os.environ.get("PASSWORD")
 
     if not sendgrid_api_key or not email_from or not email_to:
         print("Erro: Verifique se as variáveis de ambiente estão configuradas corretamente.")
         return
 
-    # Criando o e-mail
     message = Mail(
         from_email=email_from,
         to_emails=email_to,
         subject="Notificação do GitHub Actions",
-        html_content="""
-        <h1>O workflow foi executado com sucesso! ✅</h1>
-        <p>Veja os detalhes no <a href='https://github.com'>GitHub</a>.</p>
-        """
+        html_content=f"""
+            <p>Prezado, boa tarde!</p>
+            <p>Segue o passo a passo para acesso à plataforma de Dashes.</p>
+
+            <p><strong>Usuário:</strong> {email}</p>
+            <p><strong>Senha:</strong> {password}</p>
+
+            <ol>
+                <li>Acesse a URL <a href='https://dashes.4intelligence.com.br'>https://dashes.4intelligence.com.br</a> com o usuário e senha.</li>
+                <li>Configure o MFA (segundo fator de autenticação) lendo o QR code que será gerado usando seu app autenticador preferido.</li>
+                <li>Troque a senha para sua segurança clicando em “forgot your password”.</li>
+            </ol>
+            """
     )
 
     try:

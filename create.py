@@ -51,7 +51,7 @@ def create_user(email, dashes, client_id, client_secret):
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
-    print(response.text)
+    print(password)
 
 if __name__ == '__main__':
     email = os.environ.get('EMAIL')
