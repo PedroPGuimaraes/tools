@@ -1,16 +1,8 @@
 name: Print Form Data
 
 on:
-  workflow_dispatch:
-    inputs:
-      email:
-        description: 'Email'
-        required: true
-        type: string
-      dashes:
-        description: 'Dashes'
-        required: true
-        type: string
+  repository_dispatch:
+    types: [power-automate-trigger]
 
 jobs:
   print-form-data:
@@ -19,8 +11,8 @@ jobs:
       - name: Exibir dados do formulário
         run: |
           echo "📩 Dados do Formulário Recebidos:"
-          echo "Nome: ${{ github.event.inputs.email }}"
-          echo "E-mail: ${{ github.event.inputs.dashes }}"
+          echo "Nome: ${{ github.event.client_payload.email }}"
+          echo "E-mail: ${{ github.event.client_payload.dashes }}"
 
       - name: Finalizar
         run: echo "✅ Formulário processado com sucesso!"
