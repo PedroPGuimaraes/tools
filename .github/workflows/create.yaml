@@ -46,8 +46,8 @@ jobs:
 
           echo "Raw OUTPUT=$OUTPUT"
             
-          PASSWORD=$(echo "$OUTPUT" | grep "PASSWORD=" | cut -d'=' -f2)
-          STATUS=$(echo "$OUTPUT" | grep "STATUS=" | cut -d'=' -f2)
+          PASSWORD=$(echo "$OUTPUT" | awk -F'=' '/PASSWORD/ {print $2}')
+          STATUS=$(echo "$OUTPUT" | awk -F'=' '/STATUS/ {print $2}') -f2)
 
           echo "Extracted PASSWORD=$PASSWORD"
           echo "Extracted STATUS=$STATUS"
