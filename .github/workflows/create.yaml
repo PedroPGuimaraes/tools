@@ -3,6 +3,10 @@ name: Create Shiny User Auth0
 on:
   workflow_dispatch:
     inputs:
+      responder:
+        description: 'Responder'
+        required: true
+        type: string
       email:
         description: 'Email'
         required: true
