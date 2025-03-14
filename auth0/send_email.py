@@ -28,8 +28,10 @@ def send_email():
             <ol>
                 <li>Acesse a URL <a href='{shiny_url}'>{shiny_url}</a> com o usuário e senha.</li>
                 <img src="https://storage.googleapis.com/bkt-4i-dev-frontend-4casthub/auth0_mail/1.png" alt="Login Screen" width="250"/>
+                </br>
                 <li>Configure o MFA (segundo fator de autenticação) lendo o QR code que será gerado usando seu app autenticador preferido.</li>
                 <img src="https://storage.googleapis.com/bkt-4i-dev-frontend-4casthub/auth0_mail/2.png" alt="Authenticator Screen" width="250"/>
+                </br>
                 <li>Troque a senha para sua segurança clicando em “forgot your password”.</li>
                 <img src="https://storage.googleapis.com/bkt-4i-dev-frontend-4casthub/auth0_mail/1.png" alt="Login Screen" width="250"/>
             </ol>
