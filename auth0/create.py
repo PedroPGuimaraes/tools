@@ -69,12 +69,12 @@ def create_user(email, dashes, client_id, client_secret):
         response = requests.request("POST", url, headers=headers, data=payload)
 
         if response.status_code != 201:
-            return f"Erro ao criar usuário: {response.status_code} {response.text}"
+            return "Empty", response.text
 
         return password, "success"
 
     except Exception as e:
-        return f"Erro ao criar usuário: {e}"
+        return "Empty", "Erro ao criar usuário"
 
 email = os.environ.get('EMAIL')
 dashes = os.environ.get('DASHES')
