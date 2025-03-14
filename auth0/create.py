@@ -42,11 +42,11 @@ def create_user(email, dashes, client_id, client_secret):
     try:
         access_token = get_access_token(client_id, client_secret)
         if not access_token:
-            return "Empty", "Não foi possível obter o token de acesso."
+            return "Empty", "Nao foi possível obter o token de acesso."
 
         password = generate_secure_password()
         if not password:
-            return "Empty", "Não foi possível gerar a senha."
+            return "Empty", "Nao foi possível gerar a senha."
 
         shinyproxy_roles = json.loads(dashes)
 
