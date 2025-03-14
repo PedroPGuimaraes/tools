@@ -10,8 +10,7 @@ def generate_secure_password(length=16):
         characters = string.ascii_letters + string.digits
         return ''.join(secrets.choice(characters) for _ in range(length))
     except Exception as e:
-        print(f"Erro ao gerar senha segura: {e}")
-        raise Exception(f"Erro ao gerar senha segura: {e}")
+        return False
 
 def get_access_token(client_id, client_secret):
     try:
@@ -31,24 +30,23 @@ def get_access_token(client_id, client_secret):
         data = res.read()
         
         if res.status != 200:
-            raise Exception(f"Erro ao obter token: {res.status} {res.reason}")
+            return False
         
         token_info = json.loads(data.decode("utf-8"))
         return token_info.get("access_token")
     
     except Exception as e:
-        print(f"Erro ao buscar access token: {e}")
-        raise Exception(f"Erro ao buscar access token: {e}")
+        return False
 
 def create_user(email, dashes, client_id, client_secret):
     try:
         access_token = get_access_token(client_id, client_secret)
         if not access_token:
-            raise Exception("Erro: Não foi possível obter o token de acesso.")
+            return "Empty", "Não foi possível obter o token de acesso."
 
         password = generate_secure_password()
         if not password:
-            raise Exception("Erro: Não foi possível gerar a senha.")
+            return "Empty", "Não foi possível gerar a senha.
 
         shinyproxy_roles = json.loads(dashes)
 
@@ -71,26 +69,22 @@ def create_user(email, dashes, client_id, client_secret):
         response = requests.request("POST", url, headers=headers, data=payload)
 
         if response.status_code != 201:
-            raise Exception(f"Erro ao criar usuário: {response.status_code} {response.text}")
+            return f"Erro ao criar usuário: {response.status_code} {response.text}"
 
-        print(password)
+        return password, "success"
 
     except Exception as e:
-        print(f"Erro ao criar usuário: {e}")
-        raise Exception(f"Erro ao criar usuário: {e}")
+        return f"Erro ao criar usuário: {e}"
 
-if __name__ == '__main__':
-    try:
-        email = os.environ.get('EMAIL')
-        dashes = os.environ.get('DASHES')
-        client_id = os.environ.get('CLIENT_ID')
-        client_secret = os.environ.get('CLIENT_SECRET')
+email = os.environ.get('EMAIL')
+dashes = os.environ.get('DASHES')
+client_id = os.environ.get('CLIENT_ID')
+client_secret = os.environ.get('CLIENT_SECRET')
 
-        if not email or not dashes or not client_id or not client_secret:
-            print("Erro: EMAIL, DASHES, CLIENT_ID e CLIENT_SECRET devem ser fornecidos como variáveis de ambiente.")
-            raise Exception("Erro: EMAIL, DASHES, CLIENT_ID e CLIENT_SECRET devem ser fornecidos como variáveis de ambiente.")
-        
-        create_user(email, dashes, client_id, client_secret)
-    except Exception as e:
-        print(f"Erro inesperado: {e}")
-        exit(1)
+if not email or not dashes or not client_id or not client_secret:
+    return "Erro: EMAIL, DASHES, CLIENT_ID e CLIENT_SECRET devem ser fornecidos como variáveis de ambiente."
+    
+password, status = create_user(email, dashes, client_id, client_secret)
+
+print(f"PASSWORD={password}")
+print(f"STATUS={status}")

@@ -2,25 +2,19 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-
 def send_email():
     sendgrid_api_key = os.environ.get("SENDGRID_API_KEY")
     email_from = os.environ.get("EMAIL_FROM")
-    email_to = os.environ.get("EMAIL_TO")
     password = os.environ.get("PASSWORD")
+    status = os.environ.get("STATUS")
     shiny_url = os.environ.get("SHINY_URL")
 
-    if not sendgrid_api_key or not email_from or not email_to:
-        print("Erro: Verifique se as variáveis de ambiente estão configuradas corretamente.")
-        return
-
-    message = Mail(
-        from_email=email_from,
-        to_emails=email_to,
-        subject="Acesso aos dashes 4intelligence",
-        html_content=f"""
+    if status == "success":
+        email_to = os.environ.get("EMAIL_FOR")
+        email_subject = "Acesso aos dashes 4intelligence"
+        html_content = f"""
             <p>Prezado, boa tarde!</p>
-            <p>Segue o passo a passo para acesso à plataforma de Dashes.</p>
+            <p>Segue o passo a passo para acesso à plataforma de dashes 4intelligence.</p>
 
             <p><strong>Usuário:</strong> {email_to}</br>
             <strong>Senha:</strong> {password}</p>
@@ -35,7 +29,21 @@ def send_email():
                 <li>Troque a senha para sua segurança clicando em “forgot your password”.</li>
                 <img src="https://storage.googleapis.com/bkt-4i-dev-frontend-4casthub/auth0_mail/1.png" alt="Login Screen" width="250"/>
             </ol>
-            """
+        """
+    else:
+        email_to = os.environ.get("RESPONDER")
+        email_for = os.environ.get("EMAIL_FOR")
+        email_subject = "Erro na criação do usuário para acesso aos dashes 4intelligence"
+        html_content = f"""
+            <p>Prezado, boa tarde!</p>
+            <p>Houve um erro ao tentar criar o acesso para o usuário {email_for} na plataforma de dashes 4intelligence.</p>
+        """
+
+    message = Mail(
+        from_email=email_from,
+        to_emails=email_to,
+        subject=email_subject,
+        html_content=html_content
     )
 
     try:

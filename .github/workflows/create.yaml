@@ -38,15 +38,21 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
-          PASSWORD=$(python auth0/create.py)
-          echo "USER_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"
+          OUTPUT=$(python auth0/create.py)
+
+          PASSWORD=$(echo "$OUTPUT" | grep "PASSWORD=" | cut -d'=' -f2)
+          STATUS=$(echo "$OUTPUT" | grep "STATUS=" | cut -d'=' -f2)
+          echo "SCRIPT_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"
+          echo "SCRIPT_STATUS=$STATUS" >> "$GITHUB_ENV"
 
       - name: Send Email to User
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO: ${{ github.event.inputs.email }}
-          PASSWORD: ${{ env.USER_PASSWORD }}
+          EMAIL_FOR: ${{ github.event.inputs.email }}
+          RESPONDER: ${{ github.event.inputs.responder }}
+          PASSWORD: ${{ env.PASSWORD }}
           SHINY_URL: ${{ secrets.SHINY_URL }}
+          STATUS: ${{ secrets.STATUS }}
         run: |
           python auth0/send_email.py
