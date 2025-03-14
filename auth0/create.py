@@ -75,8 +75,7 @@ def create_user(email, dashes, client_id, client_secret):
         if response.status_code != 201:
             raise Exception(f"Erro ao criar usuário: {response.status_code} {response.text}")
 
-        print("Usuário criado com sucesso!")
-        print(f"Senha temporária: {password}")
+        print(password)
 
     except Exception as e:
         print(f"Erro ao criar usuário: {e}")
