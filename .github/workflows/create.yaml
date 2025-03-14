@@ -61,8 +61,8 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_FOR: ${{ github.event.inputs.email }}
           RESPONDER: ${{ github.event.inputs.responder }}
-          PASSWORD: ${{ env.PASSWORD }}
+          PASSWORD: ${{ env.SCRIPT_PASSWORD }}
+          STATUS: ${{ env.SCRIPT_STATUS }}
           SHINY_URL: ${{ secrets.SHINY_URL }}
-          STATUS: ${{ secrets.STATUS }}
         run: |
           python auth0/send_email.py
