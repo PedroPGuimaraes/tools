@@ -81,9 +81,6 @@ dashes = os.environ.get('DASHES')
 client_id = os.environ.get('CLIENT_ID')
 client_secret = os.environ.get('CLIENT_SECRET')
 
-if not email or not dashes or not client_id or not client_secret:
-    return "Erro: EMAIL, DASHES, CLIENT_ID e CLIENT_SECRET devem ser fornecidos como variáveis de ambiente."
-    
 password, status = create_user(email, dashes, client_id, client_secret)
 
 print(f"PASSWORD={password}")
