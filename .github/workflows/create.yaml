@@ -37,7 +37,6 @@ jobs:
           DASHES: ${{ github.event.inputs.dashes }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-          SHINY_URL: ${{ secrets.SHINY_URL }}
         run: |
           PASSWORD=$(python auth0/create.py)
           echo "USER_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"
@@ -48,5 +47,6 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_TO: ${{ github.event.inputs.email }}
           PASSWORD: ${{ env.USER_PASSWORD }}
+          SHINY_URL: ${{ secrets.SHINY_URL }}
         run: |
           python auth0/send_email.py
