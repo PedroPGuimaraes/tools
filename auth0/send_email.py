@@ -37,7 +37,7 @@ def send_email():
         html_content = f"""
             <p>Prezado, boa tarde!</p>
             <p>Houve um erro ao tentar criar o acesso para o usuário {email_for} na plataforma de dashes 4intelligence.</p>
-            <p>{status}</p>
+            <p>Erro: {status}</p>
         """
 
     message = Mail(
