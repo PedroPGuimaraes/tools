@@ -10,6 +10,7 @@ def generate_secure_password(length=16):
         characters = string.ascii_letters + string.digits
         return ''.join(secrets.choice(characters) for _ in range(length))
     except Exception as e:
+        print(f"Erro ao gerar senha segura: {e}")
         raise Exception(f"Erro ao gerar senha segura: {e}")
 
 def get_access_token(client_id, client_secret):
@@ -36,6 +37,7 @@ def get_access_token(client_id, client_secret):
         return token_info.get("access_token")
     
     except Exception as e:
+        print(f"Erro ao buscar access token: {e}")
         raise Exception(f"Erro ao buscar access token: {e}")
 
 def create_user(email, dashes, client_id, client_secret):
@@ -74,6 +76,7 @@ def create_user(email, dashes, client_id, client_secret):
         print(password)
 
     except Exception as e:
+        print(f"Erro ao criar usuário: {e}")
         raise Exception(f"Erro ao criar usuário: {e}")
 
 if __name__ == '__main__':
@@ -84,6 +87,7 @@ if __name__ == '__main__':
         client_secret = os.environ.get('CLIENT_SECRET')
 
         if not email or not dashes or not client_id or not client_secret:
+            print("Erro: EMAIL, DASHES, CLIENT_ID e CLIENT_SECRET devem ser fornecidos como variáveis de ambiente.")
             raise Exception("Erro: EMAIL, DASHES, CLIENT_ID e CLIENT_SECRET devem ser fornecidos como variáveis de ambiente.")
         
         create_user(email, dashes, client_id, client_secret)
