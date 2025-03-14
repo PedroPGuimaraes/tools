@@ -68,6 +68,9 @@ def create_user(email, dashes, client_id, client_secret):
 
         response = requests.request("POST", url, headers=headers, data=payload)
 
+        if response.status_code == 409:
+            return "Empty", "O usuário já existe."
+            
         if response.status_code != 201:
             return "Empty", response.text
 
