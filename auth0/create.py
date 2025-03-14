@@ -7,7 +7,7 @@ import string
 
 def generate_secure_password(length=16):
     try:
-        characters = string.ascii_letters + string.digits + string.punctuation
+        characters = string.ascii_letters + string.digits
         return ''.join(secrets.choice(characters) for _ in range(length))
     except Exception as e:
         print(f"Erro ao gerar senha segura: {e}")
