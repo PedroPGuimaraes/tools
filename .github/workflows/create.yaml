@@ -28,7 +28,7 @@ jobs:
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r auth0/requirements.txt
 
       - name: Create Auth0 Shiny User
         env:
@@ -37,7 +37,7 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
-          PASSWORD=$(python create.py)
+          PASSWORD=$(python auth0/create.py)
           echo "USER_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"
 
       - name: Send Email to User
@@ -47,4 +47,4 @@ jobs:
           EMAIL_TO: ${{ github.event.inputs.email }}
           PASSWORD: ${{ env.USER_PASSWORD }}
         run: |
-          python send_email.py
+          python auth0/send_email.py
