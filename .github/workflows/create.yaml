@@ -16,6 +16,7 @@ jobs:
   create-user:
     name: Create Auth0 User and Send Email
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
@@ -36,6 +37,7 @@ jobs:
           DASHES: ${{ github.event.inputs.dashes }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          SHINY_URL: ${{ secrets.SHINY_URL }}
         run: |
           PASSWORD=$(python auth0/create.py)
           echo "USER_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"

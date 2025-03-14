@@ -8,6 +8,7 @@ def send_email():
     email_from = os.environ.get("EMAIL_FROM")
     email_to = os.environ.get("EMAIL_TO")
     password = os.environ.get("PASSWORD")
+    shiny_url = os.environ.get("SHINY_URL")
 
     if not sendgrid_api_key or not email_from or not email_to:
         print("Erro: Verifique se as variáveis de ambiente estão configuradas corretamente.")
@@ -16,7 +17,7 @@ def send_email():
     message = Mail(
         from_email=email_from,
         to_emails=email_to,
-        subject="Notificação do GitHub Actions",
+        subject="Credencias de Acesso Shiny Proxy",
         html_content=f"""
             <p>Prezado, boa tarde!</p>
             <p>Segue o passo a passo para acesso à plataforma de Dashes.</p>
@@ -25,7 +26,7 @@ def send_email():
             <strong>Senha:</strong> {password}</p>
 
             <ol>
-                <li>Acesse a URL <a href='https://dashes.4intelligence.com.br'>https://dashes.4intelligence.com.br</a> com o usuário e senha.</li>
+                <li>Acesse a URL <a href='{shiny_url}'>{shiny_url}</a> com o usuário e senha.</li>
                 <li>Configure o MFA (segundo fator de autenticação) lendo o QR code que será gerado usando seu app autenticador preferido.</li>
                 <li>Troque a senha para sua segurança clicando em “forgot your password”.</li>
             </ol>
