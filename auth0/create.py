@@ -83,4 +83,5 @@ client_secret = os.environ.get('CLIENT_SECRET')
 
 password, status = create_user(email, dashes, client_id, client_secret)
 
-print(f"PASSWORD={password} STATUS={status}")
+print(f"PASSWORD={password}")
+print(f"STATUS={status}")
