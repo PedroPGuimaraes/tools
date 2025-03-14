@@ -17,7 +17,7 @@ def send_email():
     message = Mail(
         from_email=email_from,
         to_emails=email_to,
-        subject="Credencias de Acesso Shiny Proxy",
+        subject="Acesso aos dashes 4intelligence",
         html_content=f"""
             <p>Prezado, boa tarde!</p>
             <p>Segue o passo a passo para acesso à plataforma de Dashes.</p>
@@ -27,6 +27,7 @@ def send_email():
 
             <ol>
                 <li>Acesse a URL <a href='{shiny_url}'>{shiny_url}</a> com o usuário e senha.</li>
+                <img src="images/1.png" alt="Descrição da Imagem"/>
                 <li>Configure o MFA (segundo fator de autenticação) lendo o QR code que será gerado usando seu app autenticador preferido.</li>
                 <li>Troque a senha para sua segurança clicando em “forgot your password”.</li>
             </ol>
