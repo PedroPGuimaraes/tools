@@ -20,7 +20,7 @@ jobs:
   create-user:
     name: Create Auth0 User and Send Email
     runs-on: ubuntu-latest
-    environment: development
+    environment: production
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4

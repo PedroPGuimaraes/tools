@@ -14,12 +14,12 @@ def generate_secure_password(length=16):
 
 def get_access_token(client_id, client_secret):
     try:
-        conn = http.client.HTTPSConnection("development-4intelligence.us.auth0.com")
+        conn = http.client.HTTPSConnection("4intelligence.auth0.com")
         
         payload = json.dumps({
             "client_id": client_id,
             "client_secret": client_secret,
-            "audience": "https://development-4intelligence.us.auth0.com/api/v2/",
+            "audience": "https://4intelligence.auth0.com/api/v2/",
             "grant_type": "client_credentials"
         })
 
@@ -50,7 +50,7 @@ def create_user(email, dashes, client_id, client_secret):
 
         shinyproxy_roles = json.loads(dashes)
 
-        url = "https://development-4intelligence.us.auth0.com/api/v2/users"
+        url = "https://4intelligence.auth0.com/api/v2/users"
         payload = json.dumps({
             "email": email,
             "password": password,
