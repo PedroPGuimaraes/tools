@@ -44,13 +44,8 @@ jobs:
         run: |
           OUTPUT=$(python auth0/create.py)
 
-          echo "Raw OUTPUT=$OUTPUT"
-            
           PASSWORD=$(echo "$OUTPUT" | grep -oP '^[^,]+')
           STATUS=$(echo "$OUTPUT" | grep -oP '(?<=, ).*$')
-
-          echo "Extracted PASSWORD=$PASSWORD"
-          echo "Extracted STATUS=$STATUS"
 
           echo "SCRIPT_PASSWORD=$PASSWORD" >> "$GITHUB_ENV"
           echo "SCRIPT_STATUS=$STATUS" >> "$GITHUB_ENV"
