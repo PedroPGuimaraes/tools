@@ -27,7 +27,7 @@ def send_email():
 
             <ol>
                 <li>Acesse a URL <a href='{shiny_url}'>{shiny_url}</a> com o usuário e senha.</li>
-                <img src="images/1.png" alt="Descrição da Imagem"/>
+                <img src="./images/1.png" alt="Descrição da Imagem"/>
                 <li>Configure o MFA (segundo fator de autenticação) lendo o QR code que será gerado usando seu app autenticador preferido.</li>
                 <li>Troque a senha para sua segurança clicando em “forgot your password”.</li>
             </ol>
